@@ -17,6 +17,14 @@
                     case '1':
                         telaEquipamento.CadastrarRegistro();
                         break;
+
+                    case '2':
+                        telaEquipamento.VizualizarRegistros();
+                        break;
+
+                    case '3':
+                        telaEquipamento.EditarRegistros();
+                        break;
                 }
 
             }
@@ -24,18 +32,26 @@
 
     }
 
+    //apresentação
     public class TelaEquipamento
     {
-        public char Apresentarmenu()
+        public RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
+        public void ExibirCabcalho()
         {
-
             Console.Clear();
             Console.WriteLine("Gestão de Equipamentos");
 
             Console.WriteLine();
+        }
+
+        public char Apresentarmenu()
+        {
+            ExibirCabcalho();
 
             Console.WriteLine("1 - Cadastro de Equipamentos");
-            Console.WriteLine("2 - Sair");
+            Console.WriteLine("2 - Visualizar Equipamentos");
+            Console.WriteLine("3 - Editar Equipamentos");
+            Console.WriteLine("S - Sair");
 
             Console.WriteLine();
 
@@ -47,9 +63,8 @@
 
         public void CadastrarRegistro()
         {
-            Console.Clear();
-            Console.WriteLine("Gestão de Equipamentos");
-            Console.WriteLine();
+            ExibirCabcalho();
+
             Console.WriteLine("Cadastro de Equipamentos");
 
             Console.WriteLine();
@@ -70,23 +85,74 @@
             DateTime dataFabricacao = DateTime.Parse(Console.ReadLine());
 
             Equipamento equipamento = new Equipamento();
+            equipamento.nome = nome;
             equipamento.precoAquisicao = precoAquisicao;
             equipamento.numeroSerie = numeroSerie;
             equipamento.fabricante = fabricante;
             equipamento.dataFabricacao = dataFabricacao;
 
+            repositorioEquipamento.equipamentos[0] = equipamento;
             
 
             Console.WriteLine($"\nEquipamento\"{equipamento.nome}\"cadastradao com sucesso!");
             Console.ReadLine();
         }
+
+        public void VizualizarRegistros()
+        {
+            ExibirCabcalho();
+            Console.WriteLine("Vizualização de Equipamentos");
+
+            Console.WriteLine();
+
+            Console.WriteLine("{0, - 10} |{1, - 20} |{2, -10} | {3, -10} | {4, -20} | {5, -20}",
+                "Id", "Nome", "Preço de aquisicao", "Numero de serie", "Fabricante", "Data de fabricacao");
+
+
+            Equipamento[] equipamentos = repositorioEquipamento.equipamentos;
+
+            for (int i = 0; i < equipamentos.Length; i++)
+            {
+
+                Equipamento e = equipamentos[i];
+
+                if (e == null)
+                    continue;
+
+                Console.WriteLine(
+                    "{0, - 10} |{1, - 20} |{2, -10} | {3, -10} | {4, -20} | {5, -20}",
+                 e.id, e.nome, e.precoAquisicao.ToString("C2"), e.equipamento, e.fabricante, e.dataFabricacao.ToShortTimeString());
+            }
+            Console.ReadLine ();
+        }
+
+        public void EditarRegistros()
+        {
+            ExibirCabcalho ();
+
+            Console.WriteLine("Edição de Equipamentos");
+
+            Console.WriteLine();
+
+            Console.WriteLine("Digite o id do registro que deseja selecionar: ");
+            int idSelecionado = Convert.ToInt32(Console.ReadLine());
+        }
     }
+
+    //Dados
+
+    public class RepositorioEquipamento
+    {
+        public Equipamento[] equipamentos = new Equipamento[100];
+    }
+
+    //regra de negócio
     public class Equipamento
     {
         public int id;
         public string nome;
         public decimal precoAquisicao;
-        public string numeroSerie;
+        public string equipamento;
         public string fabricante;
         public DateTime dataFabricacao;
     }
