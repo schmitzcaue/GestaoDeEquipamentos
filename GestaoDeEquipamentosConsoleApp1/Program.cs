@@ -38,6 +38,7 @@
         public RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
         public void ExibirCabcalho()
         {
+
             Console.Clear();
             Console.WriteLine("Gestão de Equipamentos");
 
