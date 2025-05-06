@@ -28,6 +28,7 @@
     {
         public char Apresentarmenu()
         {
+
             Console.Clear();
             Console.WriteLine("Gestão de Equipamentos");
 
