@@ -19,7 +19,7 @@
                         break;
 
                     case '2':
-                        telaEquipamento.VizualizarRegistros();
+                        telaEquipamento.VizualizarRegistros(true);
                         break;
 
                     case '3':
@@ -70,38 +70,22 @@
 
             Console.WriteLine();
 
-            Console.WriteLine("Digite o nome do equipamento: ");
-            string nome = Console.ReadLine();
-
-            Console.WriteLine("Digite o preço de aquisição do equipamentos: ");
-            decimal precoAquisicao = Convert.ToDecimal(Console.ReadLine());
-
-            Console.WriteLine("Digite o número de série do equipamento: ");
-            string numeroSerie = Console.ReadLine();
-
-            Console.WriteLine("Digite o nome fabricante do equipamento: ");
-            string fabricante = Console.ReadLine();
-
-            Console.WriteLine("Digite a data da fabricação do equipamento: ");
-            DateTime dataFabricacao = DateTime.Parse(Console.ReadLine());
-
-            Equipamento equipamento = new Equipamento();
-            equipamento.nome = nome;
-            equipamento.precoAquisicao = precoAquisicao;
-            equipamento.numeroSerie = numeroSerie;
-            equipamento.fabricante = fabricante;
-            equipamento.dataFabricacao = dataFabricacao;
+            Equipamento equipamento = ObterDados();
 
             repositorioEquipamento.equipamentos[0] = equipamento;
-            
+
 
             Console.WriteLine($"\nEquipamento\"{equipamento.nome}\"cadastradao com sucesso!");
             Console.ReadLine();
         }
 
-        public void VizualizarRegistros()
+        
+
+        public void VizualizarRegistros(bool exibirCabecalho)
         {
+            if ( exibirCabecalho == true)
             ExibirCabcalho();
+
             Console.WriteLine("Vizualização de Equipamentos");
 
             Console.WriteLine();
@@ -135,8 +119,65 @@
 
             Console.WriteLine();
 
+            VizualizarRegistros(false);
+
             Console.WriteLine("Digite o id do registro que deseja selecionar: ");
             int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+            Equipamento equipamentoSelecionado = null;
+
+            Equipamento[] equipamentos = repositorioEquipamento.equipamentos;
+
+            for (int i = 0; i < equipamentos.Length; i++)
+            {
+                Equipamento e = equipamentos[i];
+
+                if (e == null)
+                    continue;
+
+                if (e.id == idSelecionado)
+                    equipamentoSelecionado = e;
+            }
+
+            if(equipamentoSelecionado == null)
+                return;
+
+            Equipamento equipamentoAtualizado = ObterDados();
+
+            equipamentoSelecionado.nome = equipamentoAtualizado.nome;
+            equipamentoSelecionado.precoAquisicao = equipamentoAtualizado.precoAquisicao;
+            equipamentoSelecionado.numeroSerie = equipamentoAtualizado.numeroSerie;
+            equipamentoSelecionado.fabricante = equipamentoAtualizado.fabricante;
+            equipamentoSelecionado.dataFabricacao = equipamentoAtualizado.dataFabricacao;
+
+            Console.WriteLine($"\nEquipamento\"{equipamentoSelecionado.nome}\"editado com sucesso!");
+            Console.ReadLine();
+
+        }
+        public Equipamento ObterDados()
+        {
+            Console.WriteLine("Digite o nome do equipamento: ");
+            string nome = Console.ReadLine();
+
+            Console.WriteLine("Digite o preço de aquisição do equipamentos: ");
+            decimal precoAquisicao = Convert.ToDecimal(Console.ReadLine());
+
+            Console.WriteLine("Digite o número de série do equipamento: ");
+            string numeroSerie = Console.ReadLine();
+
+            Console.WriteLine("Digite o nome fabricante do equipamento: ");
+            string fabricante = Console.ReadLine();
+
+            Console.WriteLine("Digite a data da fabricação do equipamento: ");
+            DateTime dataFabricacao = DateTime.Parse(Console.ReadLine());
+
+            Equipamento equipamento = new Equipamento();
+            equipamento.nome = nome;
+            equipamento.precoAquisicao = precoAquisicao;
+            equipamento.numeroSerie = numeroSerie;
+            equipamento.fabricante = fabricante;
+            equipamento.dataFabricacao = dataFabricacao;
+            return equipamento;
         }
     }
 
@@ -157,4 +198,5 @@
         public string fabricante;
         public DateTime dataFabricacao;
     }
+
 }
