@@ -25,6 +25,10 @@
                     case '3':
                         telaEquipamento.EditarRegistros();
                         break;
+
+                    case '4':
+                        telaEquipamento.ExcluirRegistros();
+                        break;
                 }
 
             }
@@ -52,6 +56,7 @@
             Console.WriteLine("1 - Cadastro de Equipamentos");
             Console.WriteLine("2 - Visualizar Equipamentos");
             Console.WriteLine("3 - Editar Equipamentos");
+            Console.WriteLine("4 - Excluir Equipamentos");
             Console.WriteLine("S - Sair");
 
             Console.WriteLine();
@@ -113,7 +118,7 @@
 
         public void EditarRegistros()
         {
-            ExibirCabcalho ();
+            ExibirCabcalho();
 
             Console.WriteLine("Edição de Equipamentos");
 
@@ -139,7 +144,7 @@
                     equipamentoSelecionado = e;
             }
 
-            if(equipamentoSelecionado == null)
+            if (equipamentoSelecionado == null)
                 return;
 
             Equipamento equipamentoAtualizado = ObterDados();
@@ -152,8 +157,42 @@
 
             Console.WriteLine($"\nEquipamento\"{equipamentoSelecionado.nome}\"editado com sucesso!");
             Console.ReadLine();
-
         }
+        public void ExcluirRegistros()
+        {
+            ExibirCabcalho();
+
+            Console.WriteLine("Exclusão de Equipamentos");
+
+            Console.WriteLine();
+
+            VizualizarRegistros(false);
+
+            Console.WriteLine("Digite o id do registro que deseja selecionar: ");
+            int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine();
+
+            Equipamento[] equipamentos = repositorioEquipamento.equipamentos;
+
+            for (int i = 0; i < equipamentos.Length; i++)
+            {
+                
+
+                if (equipamentos[i] == null)
+                    continue;
+
+                if (equipamentos[i].id == idSelecionado)
+                {
+                    equipamentos[i] = null;
+                    break;
+                }
+                   
+            }
+            Console.WriteLine($"\nEquipamento excluido com sucesso!");
+            Console.ReadLine();
+        }
+
         public Equipamento ObterDados()
         {
             Console.WriteLine("Digite o nome do equipamento: ");
@@ -179,6 +218,9 @@
             equipamento.dataFabricacao = dataFabricacao;
             return equipamento;
         }
+
+
+       
     }
 
     //Dados
