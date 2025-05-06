@@ -1,8 +1,10 @@
-﻿namespace GestaoDeEquipamentos.ConsoleApp;
+﻿using GestaoDeEquipamentosConsoleApp1.ModuloEquipamento;
+
+namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 public class TelaEquipamento
 {
-    public RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
+    public RepositorioEquipamento repositorioEquipamento;
 
     public void ExibirCabecalho()
     {
