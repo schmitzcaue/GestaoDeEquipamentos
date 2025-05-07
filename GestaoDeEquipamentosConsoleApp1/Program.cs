@@ -1,6 +1,5 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-using GestaoDeEquipamentosConsoleApp1.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp;
 
@@ -9,11 +8,13 @@ class Program
     static void Main(string[] args)
     {
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
+        RepositorioChamado repositorioChamado = new RepositorioChamado();
 
         TelaEquipamento telaEquipamento = new TelaEquipamento();
         telaEquipamento.repositorioEquipamento = repositorioEquipamento;
 
         TelaChamado telaChamado = new TelaChamado();
+        telaChamado.repositorioChamado = repositorioChamado;
         telaChamado.repositorioEquipamento = repositorioEquipamento;
 
         while (true)

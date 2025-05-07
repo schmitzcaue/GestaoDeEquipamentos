@@ -1,5 +1,4 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-using GestaoDeEquipamentosConsoleApp1.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 

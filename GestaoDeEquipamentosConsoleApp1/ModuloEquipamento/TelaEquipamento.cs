@@ -1,6 +1,4 @@
-﻿using GestaoDeEquipamentosConsoleApp1.ModuloEquipamento;
-
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 public class TelaEquipamento
 {
