@@ -26,6 +26,9 @@ class Program
         {
             char telaEscolhida = ApresentarMenuPrincipal();
 
+            if (telaEscolhida == 'S' || telaEscolhida == 's')
+                break;
+
             if (telaEscolhida == '1')
             {
                 char opcaoEscolhida = telaEquipamento.ApresentarMenu();

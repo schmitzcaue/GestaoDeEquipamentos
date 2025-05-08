@@ -1,4 +1,5 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+﻿
+using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
@@ -49,7 +50,25 @@ public class TelaFabricante
 
     public void EditarRegistro()
     {
-        throw new NotImplementedException();
+        ExibirCabecalho();
+
+        Console.WriteLine("Edição de Fabricantes");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.Write("Digite o id do registro que deseja selecionar: ");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+
+        Fabricante fabricanteAtualizado = ObterDados();
+
+        repositorioFabricante.EditarFabricante(idSelecionado, fabricanteAtualizado);
+
+        Console.WriteLine($"\nFabricante \"{fabricanteAtualizado.nome}\" editado com sucesso!");
+        Console.ReadLine();
     }
 
     public void ExcluirRegistro()
