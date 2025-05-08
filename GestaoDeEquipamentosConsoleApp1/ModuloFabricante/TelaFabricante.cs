@@ -73,7 +73,23 @@ public class TelaFabricante
 
     public void ExcluirRegistro()
     {
-        throw new NotImplementedException();
+        ExibirCabecalho();
+
+        Console.WriteLine("Exclusão de Fabricantes");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.Write("Digite o id do registro que deseja selecionar: ");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+
+        repositorioFabricante.ExcluirFabricante(idSelecionado);
+
+        Console.WriteLine($"\nFabricante excluído com sucesso!");
+        Console.ReadLine();
     }
 
     public void VisualizarRegistros(bool exibirCabecalho)

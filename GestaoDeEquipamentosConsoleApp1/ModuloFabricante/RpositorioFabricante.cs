@@ -1,8 +1,4 @@
-﻿
-
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-
-namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+﻿namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 public class RepositorioFabricante
 {
@@ -28,6 +24,25 @@ public class RepositorioFabricante
         fabricanteSelecionado.telefone = fabricanteAtualizado.telefone;
 
         return true;
+    }
+
+
+    public bool ExcluirFabricante(int idSelecionado)
+    {
+        for (int i = 0; i < fabricantes.Length; i++)
+        {
+            if (fabricantes[i] == null)
+                continue;
+
+            else if (fabricantes[i].id == idSelecionado)
+            {
+                fabricantes[i] = null;
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public Fabricante[] SelecionarFabricantes()
