@@ -19,9 +19,7 @@ class Program
         telaEquipamento.repositorioEquipamento = repositorioEquipamento;
         telaEquipamento.repositorioFabricante = repositorioFabricante;
 
-        TelaChamado telaChamado = new TelaChamado();
-        telaChamado.repositorioChamado = repositorioChamado;
-        telaChamado.repositorioEquipamento = repositorioEquipamento;
+        TelaChamado telaChamado = new TelaChamado(repositorioChamado, repositorioEquipamento);
 
         while (true)
         {

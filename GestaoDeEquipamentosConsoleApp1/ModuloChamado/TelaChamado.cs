@@ -1,18 +1,19 @@
 ﻿
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 
 public class TelaChamado
 {
-    public RepositorioEquipamento repositorioEquipamento;
-    public RepositorioChamado repositorioChamado;
+    private RepositorioEquipamento repositorioEquipamento;
+    private RepositorioChamado repositorioChamado;
 
-    public void ExibirCabecalho()
+    public TelaChamado(RepositorioChamado repositorioC,RepositorioEquipamento repositorioE)
     {
-        Console.Clear();
-        Console.WriteLine("Gestão de Chamados");
-        Console.WriteLine();
+       this.repositorioChamado = repositorioC;
+       this.repositorioEquipamento = repositorioE;
+
     }
 
     public char ApresentarMenu()
@@ -141,7 +142,14 @@ public class TelaChamado
         Console.ReadLine();
     }
 
-    public Chamado ObterDados()
+    private void ExibirCabecalho()
+    {
+        Console.Clear();
+        Console.WriteLine("Gestão de Chamados");
+        Console.WriteLine();
+    }
+
+    private Chamado ObterDados()
     {
         Console.Write("Digite o título do chamado: ");
         string titulo = Console.ReadLine();
@@ -158,11 +166,7 @@ public class TelaChamado
 
         Equipamento equipamentoSelecionado = repositorioEquipamento.SelecionarEquipamentoPorId(idEquipamento);
 
-        Chamado chamado = new Chamado();
-        chamado.titulo = titulo;
-        chamado.descricao = descricao;
-        chamado.dataAbertura = dataAbertura;
-        chamado.equipamento = equipamentoSelecionado;
+        Chamado chamado = new Chamado(titulo, descricao, dataAbertura, equipamentoSelecionado);
 
         return chamado;
     }
