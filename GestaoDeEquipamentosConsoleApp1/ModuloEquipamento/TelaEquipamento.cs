@@ -1,17 +1,20 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+﻿using GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
+using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 
 public class TelaEquipamento
 {
-    public RepositorioEquipamento repositorioEquipamento;
-    public RepositorioFabricante repositorioFabricante;
+    private RepositorioEquipamento repositorioEquipamento;
+    private RepositorioFabricante repositorioFabricante;
+    private RepositorioChamado repositorioChamado;
 
-    public void ExibirCabecalho()
+    public TelaEquipamento(RepositorioEquipamento repositorioE, RepositorioFabricante repositorioF, RepositorioChamado repositorioChamado)
     {
         Console.Clear();
         Console.WriteLine("Gestão de Equipamentos");
         Console.WriteLine();
+        this.repositorioChamado = repositorioChamado;
     }
 
     public char ApresentarMenu()
@@ -170,8 +173,14 @@ public class TelaEquipamento
 
         Console.ReadLine();
     }
+    private void ExibirCabecalho()
+    {
+        Console.Clear();
+        Console.WriteLine("Gestão de Equipamentos");
+        Console.WriteLine();
+    }
 
-    public Equipamento ObterDados()
+    private Equipamento ObterDados()
     {
         Console.Write("Digite o nome do equipamento: ");
         string nome = Console.ReadLine();
@@ -192,12 +201,8 @@ public class TelaEquipamento
 
         Fabricante fabricanteSelecionado = repositorioFabricante.SelecionarFabricantePorId(idFabricante);
 
-        Equipamento equipamento = new Equipamento();
-        equipamento.nome = nome;
-        equipamento.precoAquisicao = precoAquisicao;
-        equipamento.numeroSerie = numeroSerie;
-        equipamento.fabricante = fabricanteSelecionado;
-        equipamento.dataFabricacao = dataFabricacao;
+        Equipamento equipamento = new Equipamento(nome, precoAquisicao, numeroSerie, fabricanteSelecionado, dataFabricacao);
+
 
         return equipamento;
     }
