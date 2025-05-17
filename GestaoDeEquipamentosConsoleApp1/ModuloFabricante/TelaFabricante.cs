@@ -1,6 +1,4 @@
 ﻿
-using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 public class TelaFabricante
@@ -39,6 +37,22 @@ public class TelaFabricante
         Console.WriteLine();
 
         Fabricante novoFabricante = ObterDados();
+
+        string erros = novoFabricante.Validar();
+
+        if (erros.Length > 0)
+        {
+            Console.WriteLine();
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(erros);
+            Console.ResetColor();
+
+            Console.Write("\nDigite ENTER para continuar...");
+            Console.ReadLine();
+
+            return;
+        }
 
         repositorioFabricante.CadastrarFabricante(novoFabricante);
 
@@ -121,6 +135,7 @@ public class TelaFabricante
 
         Console.ReadLine();
     }
+
     private void ExibirCabecalho()
     {
         Console.Clear();
