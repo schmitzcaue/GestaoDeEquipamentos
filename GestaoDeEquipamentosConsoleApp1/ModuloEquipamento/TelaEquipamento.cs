@@ -8,14 +8,14 @@ public class TelaEquipamento
 {
     private RepositorioEquipamento repositorioEquipamento;
     private RepositorioFabricante repositorioFabricante;
-    private RepositorioChamado repositorioChamado;
 
-    public TelaEquipamento(RepositorioEquipamento repositorioE, RepositorioFabricante repositorioF, RepositorioChamado repositorioChamado)
+    public TelaEquipamento(RepositorioEquipamento repositorioEquipamento, RepositorioFabricante repositorioFabricante)
     {
         Console.Clear();
         Console.WriteLine("Gestão de Equipamentos");
         Console.WriteLine();
-        this.repositorioChamado = repositorioChamado;
+        this.repositorioEquipamento = repositorioEquipamento;
+        this.repositorioFabricante = repositorioFabricante;
     }
 
     public char ApresentarMenu()

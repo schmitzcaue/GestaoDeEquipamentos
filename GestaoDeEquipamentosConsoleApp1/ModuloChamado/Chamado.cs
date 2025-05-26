@@ -22,7 +22,7 @@ public class Chamado : EntidadeBase
         this.equipamento = chamadoAtualizado.equipamento;
     }
 
-    public string Validar()
+    public override string Validar()
     {
         string erros = "";
 

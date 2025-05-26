@@ -15,7 +15,7 @@ class Program
 
         TelaFabricante telaFabricante = new TelaFabricante(repositorioFabricante);
 
-        TelaEquipamento telaEquipamento = new TelaEquipamento(repositorioEquipamento ,repositorioFabricante, repositorioChamado);
+        TelaEquipamento telaEquipamento = new TelaEquipamento(repositorioEquipamento ,repositorioFabricante);
 
         TelaChamado telaChamado = new TelaChamado(repositorioChamado, repositorioEquipamento);
 
