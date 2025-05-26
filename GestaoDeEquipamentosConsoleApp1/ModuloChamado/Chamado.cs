@@ -1,8 +1,9 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
+using GestaoDeEquipamentosConsoleApp1.Compartilhado;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 
-public class Chamado
+public class Chamado : EntidadeBase
 {
     public int id;
     public string titulo;
@@ -11,11 +12,32 @@ public class Chamado
 
     public Equipamento equipamento;
 
-    public Chamado(string titulo, string descricao, DateTime dataAbertura,Equipamento equipamento)
+    public override void AtualizarRegistro(EntidadeBase registroAtualizado)
     {
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.dataAbertura = dataAbertura;
-        this.equipamento = equipamento;
+        Chamado chamadoAtualizado = (Chamado)registroAtualizado;
+
+        this.titulo = chamadoAtualizado.titulo;
+        this.descricao = chamadoAtualizado.descricao;
+        this.dataAbertura = chamadoAtualizado.dataAbertura;
+        this.equipamento = chamadoAtualizado.equipamento;
+    }
+
+    public string Validar()
+    {
+        string erros = "";
+
+        if (string.IsNullOrWhiteSpace(titulo))
+            erros += "O campo \"Título\" é obrigatório.\n";
+
+        else if (titulo.Length < 3)
+            erros += "O campo \"Título\" precisa conter ao menos 3 caracteres.\n";
+
+        if (string.IsNullOrWhiteSpace(descricao))
+            erros += "O campo \"Descrição\" é obrigatório.\n";
+
+        if (equipamento == null)
+            erros += "O campo \"Equipamento\" é obrigatório.\n";
+
+        return erros;
     }
 }

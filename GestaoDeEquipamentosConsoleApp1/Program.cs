@@ -7,8 +7,7 @@ namespace GestaoDeEquipamentos.ConsoleApp;
 class Program
 {
     static void Main(string[] args)
-    {
-        Fabricante fabricante = new Fabricante("", "", "");
+    { 
 
         RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();

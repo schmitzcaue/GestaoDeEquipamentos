@@ -1,6 +1,7 @@
 ﻿
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
 using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+using GestaoDeEquipamentosConsoleApp1.Compartilhado;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 
@@ -9,10 +10,10 @@ public class TelaChamado
     private RepositorioEquipamento repositorioEquipamento;
     private RepositorioChamado repositorioChamado;
 
-    public TelaChamado(RepositorioChamado repositorioC,RepositorioEquipamento repositorioE)
+    public TelaChamado(RepositorioChamado repositorioC,RepositorioEquipamento RepositorioEquipamento)
     {
-       this.repositorioChamado = repositorioC;
-       this.repositorioEquipamento = repositorioE;
+       this.repositorioChamado = repositorioChamado;
+       this.repositorioEquipamento = RepositorioEquipamento;
 
     }
 
@@ -44,7 +45,9 @@ public class TelaChamado
 
         Chamado chamado = ObterDados();
 
-        repositorioChamado.CadastrarChamado(chamado);
+        repositorioChamado.CadastrarRegistro(chamado);
+        //repositorioEquipamento.CadastrarRegistro(equipamento);
+        
 
         Console.WriteLine($"\nChamado \"{chamado.titulo}\" cadastrado com sucesso!");
         Console.ReadLine();
@@ -67,7 +70,8 @@ public class TelaChamado
 
         Chamado chamadoAtualizado = ObterDados();
 
-        bool conseguiuEditar = repositorioChamado.EditarChamado(idSelecionado, chamadoAtualizado);
+        bool conseguiuEditar = repositorioChamado.EditarRegistro(idSelecionado, chamadoAtualizado);
+       // bool conseguiuEditar = repositorioEquipamento.EditarRegistro(idSelecionado, equipamentoAtualizado);
 
         if (!conseguiuEditar)
         {
@@ -96,7 +100,7 @@ public class TelaChamado
 
         Console.WriteLine();
 
-        bool conseguiuExcluir = repositorioChamado.ExcluirChamado(idSelecionado);
+        bool conseguiuExcluir = repositorioChamado.ExcluirRegistro(idSelecionado);
 
         if (!conseguiuExcluir)
         {
@@ -124,11 +128,11 @@ public class TelaChamado
             "Id", "Título", "Descrição", "Data de Abertura", "Equipamento"
         );
 
-        Chamado[] chamados = repositorioChamado.SelecionarChamados();
+        EntidadeBase[] chamados = repositorioChamado.selecionarRegistros();
 
         for (int i = 0; i < chamados.Length; i++)
         {
-            Chamado c = chamados[i];
+            Chamado c = (Chamado)chamados[i];
 
             if (c == null)
                 continue;
@@ -164,7 +168,7 @@ public class TelaChamado
         Console.Write("Digite o ID do equipamento que deseja selecionar: ");
         int idEquipamento = Convert.ToInt32(Console.ReadLine());
 
-        Equipamento equipamentoSelecionado = repositorioEquipamento.SelecionarEquipamentoPorId(idEquipamento);
+        Equipamento equipamentoSelecionado = (Equipamento)repositorioEquipamento.SelecionarRegistroPorId(idEquipamento);
 
         Chamado chamado = new Chamado(titulo, descricao, dataAbertura, equipamentoSelecionado);
 
@@ -184,11 +188,11 @@ public class TelaChamado
             "Id", "Nome", "Preço Aquisição", "Número Série", "Fabricante", "Data Fabricação"
         );
 
-        Equipamento[] equipamentos = repositorioEquipamento.SelecionarEquipamentos();
+        EntidadeBase[] equipamentos = repositorioEquipamento.selecionarRegistros();
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
-            Equipamento e = equipamentos[i];
+            Equipamento e = (Equipamento)equipamentos[i];
 
             if (e == null)
                 continue;
