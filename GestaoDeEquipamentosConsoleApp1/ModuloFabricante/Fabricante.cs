@@ -1,5 +1,5 @@
-﻿using System.Net.Mail;
-using GestaoDeEquipamentosConsoleApp1.Compartilhado;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using System.Net.Mail;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
@@ -45,6 +45,5 @@ public class Fabricante : EntidadeBase
         this.nome = fabricanteAtualizado.nome;
         this.email = fabricanteAtualizado.email;
         this.telefone = fabricanteAtualizado.telefone;
-
     }
 }

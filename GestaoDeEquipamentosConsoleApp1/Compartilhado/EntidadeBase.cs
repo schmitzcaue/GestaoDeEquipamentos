@@ -1,6 +1,6 @@
 ﻿namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
-public abstract class EntidadeBase 
 
+public abstract class EntidadeBase
 {
     public int id;
 

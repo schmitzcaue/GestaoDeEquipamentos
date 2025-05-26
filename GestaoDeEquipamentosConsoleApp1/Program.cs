@@ -7,15 +7,17 @@ namespace GestaoDeEquipamentos.ConsoleApp;
 class Program
 {
     static void Main(string[] args)
-    { 
-
+    {
         RepositorioFabricante repositorioFabricante = new RepositorioFabricante();
         RepositorioEquipamento repositorioEquipamento = new RepositorioEquipamento();
         RepositorioChamado repositorioChamado = new RepositorioChamado();
 
         TelaFabricante telaFabricante = new TelaFabricante(repositorioFabricante);
 
-        TelaEquipamento telaEquipamento = new TelaEquipamento(repositorioEquipamento ,repositorioFabricante);
+        TelaEquipamento telaEquipamento = new TelaEquipamento(
+            repositorioEquipamento,
+            repositorioFabricante
+        );
 
         TelaChamado telaChamado = new TelaChamado(repositorioChamado, repositorioEquipamento);
 

@@ -1,4 +1,5 @@
-﻿using GestaoDeEquipamentosConsoleApp1.Compartilhado;
+﻿using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
+using GestaoDeEquipamentosConsoleApp1.Compartilhado;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 

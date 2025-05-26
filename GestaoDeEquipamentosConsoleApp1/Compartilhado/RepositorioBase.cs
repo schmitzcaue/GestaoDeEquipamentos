@@ -1,11 +1,9 @@
-﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
-
-namespace GestaoDeEquipamentosConsoleApp1.Compartilhado;
+﻿namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 
 public abstract class RepositorioBase
-    {
-        private EntidadeBase[] registros = new EntidadeBase[100];
-        private int contadorRegistros = 0;
+{
+    private EntidadeBase[] registros = new EntidadeBase[100];
+    private int contadorRegistros = 0;
 
     public void CadastrarRegistro(EntidadeBase novoRegistro)
     {
@@ -13,17 +11,19 @@ public abstract class RepositorioBase
 
         contadorRegistros++;
     }
-    public bool EditarRegistro(int idSelecionado, EntidadeBase RegistroAtualizado)
-    {
-        EntidadeBase RegistroSelecionado = SelecionarRegistroPorId(idSelecionado);
 
-        if (RegistroSelecionado == null)
+    public bool EditarRegistro(int idSelecionado, EntidadeBase registroAtualizado)
+    {
+        EntidadeBase registroSelecionado = SelecionarRegistroPorId(idSelecionado);
+
+        if (registroSelecionado == null)
             return false;
 
-        RegistroSelecionado.AtualizarRegistro(RegistroAtualizado);
+        registroSelecionado.AtualizarRegistro(registroAtualizado);
 
         return true;
     }
+
     public bool ExcluirRegistro(int idSelecionado)
     {
         for (int i = 0; i < registros.Length; i++)
@@ -42,7 +42,7 @@ public abstract class RepositorioBase
         return false;
     }
 
-    public EntidadeBase[] selecionarRegistros()
+    public EntidadeBase[] SelecionarRegistros()
     {
         return registros;
     }

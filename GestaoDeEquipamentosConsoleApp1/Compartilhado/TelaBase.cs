@@ -1,5 +1,4 @@
 ﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
-using GestaoDeEquipamentosConsoleApp1.Compartilhado;
 
 namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 
@@ -65,11 +64,12 @@ public abstract class TelaBase
         Console.WriteLine($"\n{nomeEntidade} cadastrado com sucesso!");
         Console.ReadLine();
     }
+
     public void EditarRegistro()
     {
         ExibirCabecalho();
 
-        Console.WriteLine($"Edição de Fabricantes{nomeEntidade}");
+        Console.WriteLine($"Edição de {nomeEntidade}");
 
         Console.WriteLine();
 
@@ -79,11 +79,12 @@ public abstract class TelaBase
         int idSelecionado = Convert.ToInt32(Console.ReadLine());
 
         Console.WriteLine();
+
         EntidadeBase registroAtualizado = ObterDados();
 
         repositorio.EditarRegistro(idSelecionado, registroAtualizado);
 
-        Console.WriteLine($"\n{nomeEntidade} \" editado com sucesso!");
+        Console.WriteLine($"\n{nomeEntidade} editado com sucesso!");
         Console.ReadLine();
     }
 
@@ -109,11 +110,13 @@ public abstract class TelaBase
     }
 
     public abstract void VisualizarRegistros(bool exibirCabecalho);
+
     protected void ExibirCabecalho()
     {
         Console.Clear();
         Console.WriteLine($"Gestão de {nomeEntidade}s");
         Console.WriteLine();
     }
+
     protected abstract EntidadeBase ObterDados();
 }

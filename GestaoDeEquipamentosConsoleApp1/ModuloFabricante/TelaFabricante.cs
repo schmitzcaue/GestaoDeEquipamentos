@@ -13,10 +13,6 @@ public class TelaFabricante : TelaBase
         this.repositorioFabricante = repositorioFabricante;
     }
 
-   
-
-
-
     public override void VisualizarRegistros(bool exibirCabecalho)
     {
         if (exibirCabecalho == true)
