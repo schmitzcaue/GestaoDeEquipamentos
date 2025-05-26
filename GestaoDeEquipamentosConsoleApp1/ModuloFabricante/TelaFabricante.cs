@@ -13,51 +13,11 @@ public class TelaFabricante : TelaBase
         this.repositorioFabricante = repositorioFabricante;
     }
 
-    public void EditarRegistro()
-    {
-        ExibirCabecalho();
+   
 
-        Console.WriteLine("Edição de Fabricantes");
 
-        Console.WriteLine();
 
-        VisualizarRegistros(false);
-
-        Console.Write("Digite o id do registro que deseja selecionar: ");
-        int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine();
-
-        Fabricante fabricanteAtualizado = ObterDados();
-
-        repositorioFabricante.EditarRegistro(idSelecionado, fabricanteAtualizado);
-
-        Console.WriteLine($"\nFabricante \"{fabricanteAtualizado.nome}\" editado com sucesso!");
-        Console.ReadLine();
-    }
-
-    public void ExcluirRegistro()
-    {
-        ExibirCabecalho();
-
-        Console.WriteLine("Exclusão de Fabricantes");
-
-        Console.WriteLine();
-
-        VisualizarRegistros(false);
-
-        Console.Write("Digite o id do registro que deseja selecionar: ");
-        int idSelecionado = Convert.ToInt32(Console.ReadLine());
-
-        Console.WriteLine();
-
-        repositorioFabricante.ExcluirRegistro(idSelecionado);
-
-        Console.WriteLine($"\nFabricante excluído com sucesso!");
-        Console.ReadLine();
-    }
-
-    public void VisualizarRegistros(bool exibirCabecalho)
+    public override void VisualizarRegistros(bool exibirCabecalho)
     {
         if (exibirCabecalho == true)
             ExibirCabecalho();

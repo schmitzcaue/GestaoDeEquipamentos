@@ -1,4 +1,5 @@
-﻿using GestaoDeEquipamentosConsoleApp1.Compartilhado;
+﻿using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
+using GestaoDeEquipamentosConsoleApp1.Compartilhado;
 
 namespace GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 
@@ -64,7 +65,50 @@ public abstract class TelaBase
         Console.WriteLine($"\n{nomeEntidade} cadastrado com sucesso!");
         Console.ReadLine();
     }
+    public void EditarRegistro()
+    {
+        ExibirCabecalho();
 
+        Console.WriteLine($"Edição de Fabricantes{nomeEntidade}");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.Write("Digite o id do registro que deseja selecionar: ");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+        EntidadeBase registroAtualizado = ObterDados();
+
+        repositorio.EditarRegistro(idSelecionado, registroAtualizado);
+
+        Console.WriteLine($"\n{nomeEntidade} \" editado com sucesso!");
+        Console.ReadLine();
+    }
+
+    public void ExcluirRegistro()
+    {
+        ExibirCabecalho();
+
+        Console.WriteLine($"Exclusão de {nomeEntidade}");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.Write("Digite o id do registro que deseja selecionar: ");
+        int idSelecionado = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine();
+
+        repositorio.ExcluirRegistro(idSelecionado);
+
+        Console.WriteLine($"\n{nomeEntidade} excluído com sucesso!");
+        Console.ReadLine();
+    }
+
+    public abstract void VisualizarRegistros(bool exibirCabecalho);
     protected void ExibirCabecalho()
     {
         Console.Clear();
