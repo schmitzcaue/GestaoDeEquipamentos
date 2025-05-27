@@ -1,20 +1,21 @@
 ﻿
 using GestaoDeEquipamentos.ConsoleApp.Compartilhado;
 using GestaoDeEquipamentos.ConsoleApp.ModuloEquipamento;
-using GestaoDeEquipamentos.ConsoleApp.ModuloFabricante;
 
 namespace GestaoDeEquipamentos.ConsoleApp.ModuloChamado;
 
-public class TelaChamado :TelaBase
+public class TelaChamado : TelaBase
 {
-    private RepositorioEquipamento repositorioEquipamento;
     private RepositorioChamado repositorioChamado;
+    private RepositorioEquipamento repositorioEquipamento;
 
-    public TelaChamado(RepositorioChamado repositorioChamado, RepositorioEquipamento RepositorioEquipamento) :base ("Chamado", repositorioChamado)
+    public TelaChamado(
+        RepositorioChamado repositorioChamado,
+        RepositorioEquipamento repositorioEquipamento
+    ) : base("Chamado", repositorioChamado)
     {
-       this.repositorioChamado = repositorioChamado;
-       this.repositorioEquipamento = RepositorioEquipamento;
-
+        this.repositorioChamado = repositorioChamado;
+        this.repositorioEquipamento = repositorioEquipamento;
     }
 
     public override void VisualizarRegistros(bool exibirCabecalho)
@@ -31,7 +32,7 @@ public class TelaChamado :TelaBase
             "Id", "Título", "Descrição", "Data de Abertura", "Equipamento"
         );
 
-        EntidadeBase[] chamados = repositorioChamado.selecionarRegistros();
+        EntidadeBase[] chamados = repositorioChamado.SelecionarRegistros();
 
         for (int i = 0; i < chamados.Length; i++)
         {
@@ -66,12 +67,16 @@ public class TelaChamado :TelaBase
 
         Equipamento equipamentoSelecionado = (Equipamento)repositorioEquipamento.SelecionarRegistroPorId(idEquipamento);
 
-        Chamado chamado = new Chamado(titulo, descricao, dataAbertura, equipamentoSelecionado);
+        Chamado chamado = new Chamado();
+        chamado.titulo = titulo;
+        chamado.descricao = descricao;
+        chamado.dataAbertura = dataAbertura;
+        chamado.equipamento = equipamentoSelecionado;
 
         return chamado;
     }
 
-    public void VisualizarEquipamentos()
+    private void VisualizarEquipamentos()
     {
         Console.WriteLine();
 
@@ -84,7 +89,7 @@ public class TelaChamado :TelaBase
             "Id", "Nome", "Preço Aquisição", "Número Série", "Fabricante", "Data Fabricação"
         );
 
-        EntidadeBase[] equipamentos = repositorioEquipamento.selecionarRegistros();
+        EntidadeBase[] equipamentos = repositorioEquipamento.SelecionarRegistros();
 
         for (int i = 0; i < equipamentos.Length; i++)
         {
@@ -95,7 +100,7 @@ public class TelaChamado :TelaBase
 
             Console.WriteLine(
                 "{0, -10} | {1, -20} | {2, -15} | {3, -15} | {4, -20} | {5, -15}",
-                e.id, e.nome, e.precoAquisicao.ToString("C2"), e.numeroSerie, e.fabricante, e.dataFabricacao.ToShortDateString()
+                e.id, e.nome, e.precoAquisicao.ToString("C2"), e.numeroSerie, e.fabricante.nome, e.dataFabricacao.ToShortDateString()
             );
         }
 
